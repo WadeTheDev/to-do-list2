@@ -8,12 +8,12 @@ class App extends React.Component {
     super()
     this.state = {
       tasks: [],
-      filter: "to do"
+      filter: ""
     }
   }
 
   addTask = (taskName) => {
-    const task = {description: taskName, status: "To do",modify: false}
+    const task = {description: taskName, status: '',modify: false}
     const taskClone = [task,...this.state.tasks]
     this.setState({tasks : taskClone})
   }
@@ -58,21 +58,23 @@ class App extends React.Component {
 
 
   render() {
+    
     return (
       <div>
         <h1>Todo List</h1>
-        <button onClick={() => this.handleButtonStatus('All')}>All</button>
+        <button onClick={() => this.handleButtonStatus('')}>All</button>
         <button onClick={() => this.handleButtonStatus('To do')}>To do</button>
         <button onClick={() => this.handleButtonStatus ('Doing')}>Doing</button>
         <button onClick={() => this.handleButtonStatus ('Done')}>Done</button>
         <Form addTask={this.addTask}/>
-        {this.state.tasks.filter((task) => task.status === this.state.filter)}
-        <List tasks={this.state.tasks}
+        {this.state.tasks.filter((task) => {return task.status === this.state.filter})}
+        <List 
+        tasks={this.state.tasks}
          deleteTask={this.deleteTask}
         changeStatus={this.handleChangeStatus}
         modifyBox={this.handleModifyTask}
         changeDescription={this.handleChangeDescription}
-        filter={this.state.filter}
+        // filter={this.state.filter}
         test={this.test}
         />
       </div>
