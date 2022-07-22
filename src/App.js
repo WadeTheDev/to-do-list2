@@ -8,6 +8,7 @@ class App extends React.Component {
     super()
     this.state = {
       tasks: [],
+      filter: "to do"
     }
   }
 
@@ -50,20 +51,28 @@ class App extends React.Component {
     this.setState({tasks: taskClone})
   }
 
+  handleButtonStatus = (status) => {
+    this.setState({filter: status})
+  }
+
+
+
   render() {
     return (
       <div>
         <h1>Todo List</h1>
-        <button>All</button>
-        <button>To do</button>
-        <button>Doing</button>
-        <button>Done</button>
+        <button onClick={() => this.handleButtonStatus('All')}>All</button>
+        <button onClick={() => this.handleButtonStatus('To do')}>To do</button>
+        <button onClick={() => this.handleButtonStatus ('Doing')}>Doing</button>
+        <button onClick={() => this.handleButtonStatus ('Done')}>Done</button>
         <Form addTask={this.addTask}/>
+        {this.state.tasks.filter((task) => task.status === this.state.filter)}
         <List tasks={this.state.tasks}
          deleteTask={this.deleteTask}
         changeStatus={this.handleChangeStatus}
         modifyBox={this.handleModifyTask}
         changeDescription={this.handleChangeDescription}
+        filter={this.state.filter}
         test={this.test}
         />
       </div>
