@@ -13,8 +13,8 @@ class List extends React.Component {
             <ul>
             {this.props.tasks.map((task,i) =>{
             return (
-                <div>
-                { this.props.modify === false ? (
+                <div key={i}>
+                { task.modify === false ? (
                     <li key={i}>
                     <h2>Tache {i}</h2>
                     <p>{task.description}</p>
@@ -24,13 +24,13 @@ class List extends React.Component {
                     <option value="Doing">Doing</option>
                     <option value="Done">Done</option>
                     </select>
-                    <button onClick={this.props.modifyBox}>Modifier</button>
+                    <button onClick={()=> this.props.modifyBox(i)}>Modifier</button>
                     <button onClick={() => this.props.deleteTask(i)}>Supprimer</button>
                     </li>
                 ) : 
-                (<div key={i}>
+                (<div>
                 <input onChange={(event) => this.props.changeDescription(i,event)} type='text'></input>
-                <button onClick={this.props.modifyBox}>Valider</button>
+                <button onClick={()=> this.props.modifyBox(i)}>Valider</button>
                 </div>)
                     }
                 </div>

@@ -8,12 +8,11 @@ class App extends React.Component {
     super()
     this.state = {
       tasks: [],
-      modify: false
     }
   }
 
   addTask = (taskName) => {
-    const task = {description: taskName, status: "To do"}
+    const task = {description: taskName, status: "To do",modify: false}
     const taskClone = [task,...this.state.tasks]
     this.setState({tasks : taskClone})
   }
@@ -35,12 +34,14 @@ class App extends React.Component {
     console.log(e.target.value)
   }
 
-  handleModifyTask = () => {
-    if (this.state.modify) {
-      this.setState({modify: false})
+  handleModifyTask = (index) => {
+    const taskClone = [...this.state.tasks]
+    if (this.state.tasks[index].modify) {
+      taskClone[index].modify = false
     }else{
-      this.setState({modify: true})
+      taskClone[index].modify = true    
     }
+    this.setState({tasks: taskClone})
   }
 
   handleChangeDescription = (index, e) => {
@@ -53,11 +54,14 @@ class App extends React.Component {
     return (
       <div>
         <h1>Todo List</h1>
+        <button>All</button>
+        <button>To do</button>
+        <button>Doing</button>
+        <button>Done</button>
         <Form addTask={this.addTask}/>
         <List tasks={this.state.tasks}
          deleteTask={this.deleteTask}
         changeStatus={this.handleChangeStatus}
-        modify={this.state.modify}
         modifyBox={this.handleModifyTask}
         changeDescription={this.handleChangeDescription}
         test={this.test}
