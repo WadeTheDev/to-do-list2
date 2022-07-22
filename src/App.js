@@ -1,16 +1,29 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
-import './index.css'
+import Form from './components/Form'
 
-function App() {
-  return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-    <button className='px-6 h-12 uppercase font-semibold tracking-wider border-2 border-black bg-teal-400 text-black'>Click on me !</button>
-    </div>
-  );
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      tasks: [],
+      task : ""
+    }
+  }
+
+  addTask = (e) => {
+    this.setState({task: e.target.value})
+    console.log(this.state.task)
+  }
+
+  render() {
+    return (
+      <div>
+        <h1 className="text-primary">Todo List</h1>
+        <Form addTask={this.addTask}/>
+      </div>
+    );
+  }
 }
 
 export default App;
