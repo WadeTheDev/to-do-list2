@@ -13,7 +13,7 @@ class App extends React.Component {
   }
 
   addTask = (taskName) => {
-    const task = {description: taskName, status: '',modify: false}
+    const task = {description: taskName, status: 'to do',modify: false}
     const taskClone = [task,...this.state.tasks]
     this.setState({tasks : taskClone})
   }
@@ -61,11 +61,13 @@ class App extends React.Component {
     
     return (
       <div>
-        <h1>Todo List</h1>
-        <button onClick={() => this.handleButtonStatus('')}>All</button>
-        <button onClick={() => this.handleButtonStatus('To do')}>To do</button>
-        <button onClick={() => this.handleButtonStatus ('Doing')}>Doing</button>
-        <button onClick={() => this.handleButtonStatus ('Done')}>Done</button>
+        <h1 className="p-9 text-center text-black-700 font-bold text-5xl">TO DO LIST</h1>
+        <div className="flex gap-4 justify-center" >
+          <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-100 text-black hover:bg-white" onClick={() => this.handleButtonStatus('')}>All</button>
+          <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-200 text-black hover:bg-white" onClick={() => this.handleButtonStatus('To do')}>To do</button>
+          <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-300 text-black hover:bg-white" onClick={() => this.handleButtonStatus ('Doing')}>Doing</button>
+          <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-400 text-black hover:bg-white" onClick={() => this.handleButtonStatus ('Done')}>Done</button>
+        </div>
         <Form addTask={this.addTask}/>
         {this.state.tasks.filter((task) => {return task.status === this.state.filter})}
         <List 
