@@ -8,12 +8,13 @@ class App extends React.Component {
     super()
     this.state = {
       tasks: [],
-      filter: ""
+      filter: "",
+      all: true
     }
   }
 
   addTask = (taskName) => {
-    const task = {description: taskName, status: 'to do',modify: false}
+    const task = {description: taskName, status: 'To do',modify: false}
     const taskClone = [task,...this.state.tasks]
     this.setState({tasks : taskClone})
   }
@@ -52,10 +53,12 @@ class App extends React.Component {
   }
 
   handleButtonStatus = (status) => {
-    this.setState({filter: status})
+    this.setState({filter: status, all: false})
   }
 
-
+  handleButtonAll = () =>{
+    this.setState({all: true})
+  }
 
   render() {
     
@@ -63,21 +66,21 @@ class App extends React.Component {
       <div>
         <h1 className="p-9 text-center text-black-700 font-bold text-5xl">TO DO LIST</h1>
         <div className="flex gap-4 justify-center" >
-          <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-100 text-black hover:bg-white" onClick={() => this.handleButtonStatus('')}>All</button>
+          <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-100 text-black hover:bg-white" onClick={this.handleButtonAll}>All</button>
           <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-200 text-black hover:bg-white" onClick={() => this.handleButtonStatus('To do')}>To do</button>
           <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-300 text-black hover:bg-white" onClick={() => this.handleButtonStatus ('Doing')}>Doing</button>
           <button className="px-7 h-10 uppercase font-semibold border-2 border-black bg-teal-400 text-black hover:bg-white" onClick={() => this.handleButtonStatus ('Done')}>Done</button>
         </div>
         <Form addTask={this.addTask}/>
-        {this.state.tasks.filter((task) => {return task.status === this.state.filter})}
         <List 
         tasks={this.state.tasks}
          deleteTask={this.deleteTask}
         changeStatus={this.handleChangeStatus}
         modifyBox={this.handleModifyTask}
         changeDescription={this.handleChangeDescription}
-        // filter={this.state.filter}
+        filter={this.state.filter}
         test={this.test}
+        all={this.state.all}
         />
       </div>
     );
