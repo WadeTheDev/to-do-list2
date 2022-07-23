@@ -16,7 +16,7 @@ class List extends React.Component {
                 <div className="flex justify-center" key={i}>
                 { task.modify === false ? (
                     <li className="border-2 px-6 py-2 border-black mb-4" key={i}>
-                    <h2 className="text-teal-500 font-bold pb-3 text-center">Tache {i + 1}</h2>
+                    <h2 className="text-teal-500 font-bold pb-3 text-center">Tache {this.props.tasks.length - i}</h2>
                     <p className="p-1 italic border">{task.description}</p>
                     <div className="pt-4 flex gap-6">
                     <input className="border italic text-sm" placeholder="Modifier" onChange={(event) => this.props.changeDescription(i,event)} type='text' ></input>
@@ -33,7 +33,7 @@ class List extends React.Component {
                 (<div>      
                  <ul>
                  <li className="border-2 px-6 py-2 border-black mb-4" key={i}>
-                    <h2 className="text-teal-500 font-bold pb-3 text-center">Tache {i + 1}</h2>
+                    <h2 className="text-teal-500 font-bold pb-3 text-center">Tache {i + this.props.tasks.length}</h2>
                     <p className="p-1 italic border">{task.description}</p>
                     <div className="pt-4 flex gap-6">
                         <input className="border italic text-sm" placeholder="Modifier" onChange={(event) => this.props.changeDescription(i,event)} type='text' ></input>
@@ -74,7 +74,7 @@ class List extends React.Component {
                 (<div>      
                  <ul>
                  <li className="border-2 px-6 py-2 border-black mb-4" key={i}>
-                    <h2 className="text-teal-500 font-bold pb-3 text-center">Tache {i + 1}</h2>
+                    <h2 className="text-teal-500 font-bold pb-3 text-center">Tache {this.props.tasks.length - i}</h2>
                     <p className="p-1 italic border">{task.description}</p>
                     <div className="pt-4 flex gap-6">
                         <input className="border italic text-sm" placeholder="Modifier" onChange={(event) => this.props.changeDescription(i,event)} type='text' ></input>
