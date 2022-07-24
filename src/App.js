@@ -9,7 +9,8 @@ class App extends React.Component {
     this.state = {
       tasks: [],
       filter: "",
-      all: true
+      all: true,
+      displayModify:false
     }
   }
 
@@ -43,7 +44,7 @@ class App extends React.Component {
     }else{
       taskClone[index].modify = true    
     }
-    this.setState({tasks: taskClone})
+    this.setState({tasks: taskClone, displayModify:true})
   }
 
   handleChangeDescription = (index, e) => {
@@ -81,6 +82,7 @@ class App extends React.Component {
         filter={this.state.filter}
         test={this.test}
         all={this.state.all}
+        displayModify={this.state.modify}
         />
       </div>
     );
