@@ -1,9 +1,7 @@
 import React from "react"
  
 class List extends React.Component {
-    constructor(){
-        super()
-    }
+
     afficherBouton = () =>{
         console.log(this.props.tasks)
     }
